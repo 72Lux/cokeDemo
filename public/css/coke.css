@@ -71,6 +71,9 @@ body{
 }
 .peapodLogin{
  width:40%;
+    max-height: 100%;
+       padding-bottom: 25px;
+    padding-top: 25px;
 }
 .peapodLogin image{
     height:75px;
