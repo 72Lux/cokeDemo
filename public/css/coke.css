@@ -1,0 +1,182 @@
+md-toolbar,._md-toolbar-transitions{
+    background-color: white !important;
+    
+}
+md-toolbar{
+    position: fixed;
+}
+.toolbar-image{
+    width:60%;
+    padding-left: 20px;
+    margin-top: 10px;
+    
+}
+
+.shopCoke{
+    width: 100%;
+    
+}
+.productImage{
+    
+        width: 200px;
+}
+
+.productRows{
+           padding-left: 100px;
+    padding-right: 20px;
+    margin-top:10px;
+}
+.description{
+    
+    width: 220px;
+}
+
+body{
+    background-color: white;
+}
+
+.buybutton{
+    width:200px;
+}
+
+
+.grayOverlay{ 
+    position: fixed;
+    top:0px;
+    background-color: black;
+    opacity: .5;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    
+}
+.productsToBuy{
+    position: fixed;
+    top:20%;
+    z-index:10;
+    background-color: white;
+   
+    margin-left: 26%;
+        padding-bottom: 20px;
+}
+.cartShown, .peapodLogin{
+    position: fixed;
+    top:20%;
+    z-index:10;
+    background-color: white;
+    width:80%;
+    border-color: black;
+    border-style: solid;
+   
+}
+.peapodLogin{
+ width:40%;
+}
+.peapodLogin image{
+    height:75px;
+    
+}
+.retailerImages{ 
+        width: 150px;
+}
+
+.buyImage{
+    width:230px;
+    margin-top: 10%;
+}
+
+.retailerSelect{
+    width: 250px;
+    
+}
+
+.sizeqtyInputs{
+    width:200px;
+}
+.showCartButton{
+    color:black;
+    padding-top:15px;
+    
+}
+.cartimage{
+    width:100px;
+    
+}
+
+.shippedFrom{
+    padding: 10px 15px;
+    
+}
+
+.peapod{
+    background-color: rgba(244, 0, 0, 1);   
+    color:white;
+}
+.peapodButton{
+    
+    background-color:#5ea000;
+}
+.itemRow{
+    margin-top: 15px;
+}
+.itemInfoRows{
+    
+        top: 25px;
+    position: relative;
+}
+
+.itemHeaders{
+    margin-top: 20px;
+}
+.headerItem{
+ padding-left: 25px;
+}
+.closebutton{
+    padding-right: 20px;
+    position: relative;
+    top: -25px;
+}
+.smallImg{
+    height:40px;
+    
+}
+.alsoOnSaleImage{
+    width:66px;
+}
+.extraProductsContainer{
+        padding-top: 15px;
+    
+}
+.onsalePrice{
+    margin-top: 14px;
+    color: red;
+}
+.peaPodCheckout{
+    
+        margin-top: 53px;
+}
+.checkoutButton{
+    margin-top:47px;
+}
+.sizeLabel{    
+    margin-top: 20px;
+    padding-right: 50px;
+}
+.checkoutSpan{
+    position:absolute;
+    right:0px;
+    
+}
+.divider{
+    background-color: black;
+    height:2px;
+}
+.sendCart{
+    width:300px;
+}
+.peapodButton.sendCart{
+    color:white;
+}
+.transmitting{
+        padding: 30 200px;
+}

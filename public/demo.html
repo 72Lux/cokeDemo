@@ -1,0 +1,237 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link rel="stylesheet" href="css/coke.css">
+</head>
+<body ng-app="cokeApp" ng-cloak>
+  
+   <div layout="column" ng-controller="cokeController"> 
+    <md-toolbar>
+        <div  layout="row">
+        <div>
+            <img class="toolbar-image" src="images/cokeToolbar.png">
+            </div>
+        <div>
+             <span>
+                 
+                 <md-button class="showCartButton" ng-click="showCart()"> Cart [{{cart.qty()}}]
+                 
+                 </md-button></span>
+            </div>
+        </div>
+      
+   
+    </md-toolbar>
+    <div> 
+        
+        <img class="shopCoke" src="images/shopCoke.png">
+       </div>
+    
+     <div class="productRows" layout="row"  ng-repeat="productRow in products"> 
+       <div  ng-repeat="product in productRow" class="column" flex>
+            <div> <img class="productImage" ng-src="{{product.image}}"></div>
+            <div class="description"> {{product.name}}</div>
+            <div> 
+                <md-button class="md-raised buybutton" md-colors="{background: 'red'}" ng-click="buy(product)">
+                    Buy Now 
+                </md-button>
+           
+           </div>
+       </div>
+       
+    </div>
+       <div class="grayOverlay" ng-show="productsToBuy || cartShown || peapodLogin" > </div>
+       <div ng-show="productsToBuy" flex-55 flex-offset-20 class="productsToBuy" layout="column">
+        
+            <div layout="row">
+                <div flex-30>
+                    <img class="buyImage" ng-src="{{currentProduct.image}}"> 
+                </div>
+                <div layout="column" flex>
+                       <div layout="row" > 
+               
+              
+               <div  flex-offset ="80" ng-click="closeBuy()"> <md-button> X </md-button> </div>
+            </div>
+                    <div class="buyProductName">{{currentProduct.name}} </div>
+                     <div layout="row">
+                        <div> 
+                            <md-input-container>
+                              <label>Zipcode:</label>
+                             <input type="text" ng-model="cart.zip">
+                            </md-input-container>
+                       </div>
+                        <div> 
+
+                            <md-input-container > 
+                            <label>Retailer:</label>
+                            <md-select  class ="retailerSelect" ng-model="currentProduct.retailer">
+                                <md-option ng-repeat="retailer in currentProduct.retailers" value="{{retailer.name}}">
+                                    <img class="retailerImages" ng-src="{{retailer.image}}">
+                                </md-option>
+                            </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div class="sizeLabel"> 
+                            
+                            Size:   {{currentProduct.size}}
+                                 
+                            
+                        </div>
+                        <div> 
+                            <md-input-container > 
+                            <label>QTY:</label>
+                            <md-select class="sizeqtyInputs"  ng-model="currentProduct.qty">
+                                <md-option value="1">1</md-option>
+                                <md-option value="2">2</md-option>
+                                <md-option value="3">3</md-option>
+                                <md-option value="4">4</md-option>
+                                <md-option value="5">5</md-option>
+                                <md-option value="6">6</md-option>
+                                <md-option value="7">7</md-option>
+                                <md-option value="8">8</md-option>
+                                <md-option value="9">9</md-option>
+                                <md-option value="10">10</md-option>
+                                
+                            </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                     <div layout="row">
+                    <div flex> 
+                        <span class="unitPrice">UnitPrice : {{currentProduct.price * currentProduct.qty}} </span>
+                    </div>
+                    <div flex flex-offset="40"> 
+                        <md-button ng-click="addToBag()" md-colors="{background: 'red'}"> Add to bag </md-button>
+                    </div>
+                    
+                    
+                    </div>
+                </div>
+           </div>
+       </div>
+        <div ng-show="cartShown"  flex="80" flex-offset="10" class="cartShown " layout="column">
+            <div layout="row" class="itemHeaders" flex> 
+                <div flex="15" class="headerItem"> item </div>
+                <div flex="20"> Name </div>
+                <div flex="10"> Size </div>
+                <div flex="10"> Price </div>
+                <div flex="10"> Qty </div>
+                <div flex="10"> Subotal </div>
+                <div flex="10" flex-offset="10"> <md-button class="closebutton" ng-click="cartShown=false "> Close </md-button>  </div>
+            </div>
+            <div layout="column" ng-repeat="retailer in cart.retailers"> 
+                <div class="shippedFrom {{retailer.name}}"> Shipped from : <img class="smallImg"     ng-src="images/{{retailer.name}}icon.png"> </div>
+                <div layout="row" class="itemRow" ng-repeat="item in retailer.items">
+                    <div flex="15" class=""><img class="cartimage" ng-src="{{item.image}}" ></div>
+                    <div flex="20" class="itemInfoRows"> {{item.name}} </div>
+                    <div flex="10" class="itemInfoRows"> {{item.size}} </div>
+                    <div flex="10" class="itemInfoRows"> {{item.price}} </div>
+                    <div flex="10" class=""> 
+                            <md-input-container > 
+                            <label>QTY:</label>
+                            <md-select  ng-model="item.qty">
+                                <md-option value="1">1</md-option>
+                                <md-option value="2">2</md-option>
+                                <md-option value="3">3</md-option>
+                                <md-option value="4">4</md-option>
+                                <md-option value="5">5</md-option>
+                                <md-option value="6">6</md-option>
+                                <md-option value="7">7</md-option>
+                                <md-option value="8">8</md-option>
+                                <md-option value="9">9</md-option>
+                                <md-option value="10">10</md-option>
+                                
+                            </md-select>
+                            </md-input-container>
+                    </div>
+                    <div flex="10" class="itemInfoRows"> {{item.price*item.qty}} </div>
+                    <div flex="10" class=""> <md-button ng-click="removeItem(item)"> remove </md-button> </div>
+                </div>
+                  <div class="divider" flex="100"></div>
+                <div class="shippedFrom" flex-offset="80">
+                    <md-button ng-click="sendToPeapod()"> Subtotal: {{cart.subtotal()}}  </md-button>
+                </div>
+            <div class="divider" flex="100"></div>
+                <div class="shippedFrom" layout="row">
+                    <div layout="column">
+                        <div> Peapod also has The following items for sale </div>
+                        <div layout="row" class="extraProductsContainer" ng-repeat="product in extraProducts"> 
+                            <div> <img class="alsoOnSaleImage" ng-src="{{product.image}}"></div>
+                            <div layout='column'>
+                                <div> {{product.name}}</div>
+                                
+                                <div layout="row"> 
+                                    <div class="onsalePrice">${{product.price}} </div>
+                                    
+                                   <div flex-offset="10"><md-button  md-colors="{background: 'red'}" ng-click="buy(product)"> Buy now </md-button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    <div class="checkoutSpan" layout="row">
+                        <div class="peaPodCheckout">
+                        <img  class="smallImg" ng-src="images/{{retailer.name}}icon.png"> 
+
+                        </div>
+
+                        <div class='checkoutButton'>
+                             <md-button class='peapodButton'  ng-click="sendToPeapod()">Checkout  </md-button>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            
+       </div>
+       
+       <div ng-show="peapodLogin" class="peapodLogin " flex="40" flex-offset="30" layout="column">
+            <div ng-show="login">
+                <div flex-offset="20" flex><img src="images/peapodicon.png"> </div>
+                <div flex-offset="20" flex>
+                    <md-input-container class="sendCart">
+                              <label>UserName:</label>
+                             <input type="text" ng-model="user.name">
+                            </md-input-container>
+                </div>
+                <div flex-offset="20" flex>
+                    <md-input-container class="sendCart">
+                        <label>Password:</label>
+                        <input type="password" ng-model="user.password">
+                    </md-input-container>
+                </div>
+                 <div flex-offset="20" flex>
+                    <md-button  class='peapodButton sendCart' ng-click="transmitToPeapod()"> Send Cart</md-button>
+                </div>
+            </div>
+           
+            <div ng-show="transmitting" class="transmitting">
+                 <md-progress-circular class="md-hue-2" md-diameter="20px"></md-progress-circular> 
+                <br/>
+                Transmitting your Cart to Peapod.
+           
+           </div>
+       </div>
+   </div>
+  
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  
+  <!-- Your application bootstrap  -->
+<script src="coke.js"> </script>
+    
+    
+    
+</body>
+</html>
