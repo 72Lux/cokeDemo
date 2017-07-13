@@ -191,8 +191,12 @@
        </div>
        
        <div ng-show="peapodLogin" class="peapodLogin " flex="40" flex-offset="30" layout="column">
+          <div layout="row">
+           <div flex-offset="20" flex><img src="images/peapodicon.png">  </div>
+              <div flex-offset="50"  flex ng-click="peapodLogin=false"><md-button class="closebutton"> Close</md-button></div>
+           </div>
             <div ng-show="login">
-                <div flex-offset="20" flex><img src="images/peapodicon.png"> </div>
+                
                 <div flex-offset="20" flex>
                     <md-input-container class="sendCart">
                               <label>UserName:</label>
