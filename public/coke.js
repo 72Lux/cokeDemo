@@ -117,7 +117,12 @@
     };
     $scope.shareACoke = {
       name: 'Personalized Coke Glass Bottle',
-      retailers: [],
+      retailers: [
+        {
+          name: 'coke',
+          image: 'images/cokelogo.png'
+        }
+      ],
       size: ' 8 fl oz',
       price: 5.00,
       image: 'images/shareACokeBottle.png',
@@ -149,7 +154,7 @@
     $scope.cart = {
       zip: '08854',
       qty: function() {
-        var item, total, _i, _len, _ref;
+        var item, total, _i, _j, _len, _len1, _ref, _ref1;
         total = 0;
         if (this.retailers.peapod) {
           _ref = this.retailers.peapod.items;
@@ -158,16 +163,32 @@
             total += parseInt(item.qty);
           }
         }
+        if (this.retailers.coke) {
+          _ref1 = this.retailers.coke.items;
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            item = _ref1[_j];
+            total += parseInt(item.qty);
+          }
+        }
         return total;
       },
       retailers: {},
       subtotal: function() {
-        var item, total, _i, _len, _ref;
+        var item, total, _i, _j, _len, _len1, _ref, _ref1;
         total = 0;
-        _ref = this.retailers.peapod.items;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          item = _ref[_i];
-          total += item.price * item.qty;
+        if (this.retailers.peapod) {
+          _ref = this.retailers.peapod.items;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            item = _ref[_i];
+            total += item.price * item.qty;
+          }
+        }
+        if (this.retailers.coke) {
+          _ref1 = this.retailers.coke.items;
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            item = _ref1[_j];
+            total += item.price * item.qty;
+          }
         }
         return total;
       }

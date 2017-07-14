@@ -120,7 +120,10 @@ cokeController = ($scope, $http, $q) ->
         ]
     $scope.shareACoke = 
         name:'Personalized Coke Glass Bottle',
-        retailers:[]
+        retailers:[  {
+                        name:'coke'
+                        image:'images/cokelogo.png'
+                    }]
         size: ' 8 fl oz'
         price: 5.00
         image: 'images/shareACokeBottle.png'
@@ -156,12 +159,19 @@ cokeController = ($scope, $http, $q) ->
             if @retailers.peapod
                 for item in @retailers.peapod.items
                     total += parseInt(item.qty)
+            if @retailers.coke
+                for item in @retailers.coke.items
+                    total += parseInt(item.qty)
             return total
         retailers:{}
         subtotal: ()->
             total =0
-            for item in @retailers.peapod.items
-                total += item.price*item.qty
+            if @retailers.peapod
+                for item in @retailers.peapod.items
+                    total += item.price*item.qty
+            if @retailers.coke
+                for item in @retailers.coke.items
+                    total += item.price*item.qty
             return total
     $scope.user ={}
     $scope.closeBuy =()->
