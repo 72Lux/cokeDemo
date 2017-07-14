@@ -69,11 +69,9 @@
                     <span class="bottlename" ng-show="currentProduct.sharing">{{bottlename}}</span>
                 </div>
                 <div layout="column" flex>
-                       <div layout="row" > 
-               
-              
-               <div  flex-offset ="80" ng-click="closeBuy()"> <md-button> X </md-button> </div>
-            </div>
+                    <div layout="row" > 
+                        <div  flex-offset ="80" ng-click="closeBuy()"> <md-button> X </md-button> </div>
+                    </div>
                     <div class="buyProductName">{{currentProduct.name}} </div>
                      <div layout="row">
                         <div ng-hide="currentProduct.sharing "> 
@@ -94,7 +92,7 @@
                             </md-input-container>
                         </div>
                          <div ng-show="currentProduct.sharing">  
-                          <md-input-container>
+                          <md-input-container class="bottleNameContainer">
                               <label>Name:</label>
                              <input type="text" ng-model="bottlename">
                             </md-input-container>

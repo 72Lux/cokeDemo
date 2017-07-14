@@ -220,6 +220,9 @@ body{
     font-weight: 400;
     
 }
+.bottleNameContainer{
+    width:336px;
+}
 .bottlename{
     position: absolute;
     top: 200px;
