@@ -1,17 +1,26 @@
 md-toolbar,._md-toolbar-transitions{
     background-color: white !important;
     
+    
+    
 }
 md-toolbar{
     position: fixed;
+    line-height: 1.5;
+    font-size: 20px;
+    color: #666 !important;
+    font-weight: 400;
+    font-style: normal;
 }
 .toolbar-image{
-    width:60%;
+    width:80%;
     padding-left: 20px;
     margin-top: 10px;
     
 }
-
+.toolbar-text{
+        margin-top: 32px;
+}
 .shopCoke{
     width: 100%;
     
@@ -27,12 +36,14 @@ md-toolbar{
     margin-top:10px;
 }
 .description{
-    
+     font-size: 20px;
+    margin-left: 8px;
     width: 220px;
 }
 
 body{
     background-color: white;
+    font-family: "HelveticaNeueW01-75Bold",Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .buybutton{
@@ -110,7 +121,11 @@ body{
     padding: 10px 15px;
     
 }
-
+.shippedFrom img{
+        top: 6px;
+    position: relative;
+}
+}
 .peapod{
     background-color: rgba(244, 0, 0, 1);   
     color:white;
@@ -182,4 +197,19 @@ body{
 }
 .transmitting{
         padding: 30 200px;
+}
+.buyProductName{
+    line-height: 1.5;
+    font-size: 20px;
+    color: #666 !important;
+    font-weight: 400;
+}
+.shippedFromSpan{
+    position: relative;
+    top:-10px;
+      line-height: 1.5;
+    font-size: 20px;
+    color: white !important;
+    font-weight: 400;
+    
 }

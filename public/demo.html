@@ -10,10 +10,15 @@
    <div layout="column" ng-controller="cokeController"> 
     <md-toolbar>
         <div  layout="row">
-        <div>
-            <img class="toolbar-image" src="images/cokeToolbar.png">
+        <div flex-offset="5" flex="10">
+            <img class="toolbar-image" src="images/cokelogo.png">
             </div>
-        <div>
+            <div  flex="10" class="toolbar-text">Coca-cola </div>
+            <div  flex="10" class="toolbar-text">Coke Life </div>
+            <div  flex="10" class="toolbar-text">Coke Zero</div>
+            <div  flex="10" class="toolbar-text">Shop </div>
+            <div  flex="10" class="toolbar-text">Rewards </div>
+        <div  flex-offset="25">
              <span>
                  
                  <md-button class="showCartButton" ng-click="showCart()"> Cart [{{cart.qty()}}]
@@ -125,7 +130,7 @@
                 <div flex="10" flex-offset="10"> <md-button class="closebutton" ng-click="cartShown=false "> Close </md-button>  </div>
             </div>
             <div layout="column" ng-repeat="retailer in cart.retailers"> 
-                <div class="shippedFrom {{retailer.name}}"> Shipped from : <img class="smallImg"     ng-src="images/{{retailer.name}}icon.png"> </div>
+                <div class="shippedFrom {{retailer.name}}"><span class="shippedFromSpan"> Shipped from :</span> <img class="smallImg"     ng-src="images/{{retailer.name}}icon.png"> </div>
                 <div layout="row" class="itemRow" ng-repeat="item in retailer.items">
                     <div flex="15" class=""><img class="cartimage" ng-src="{{item.image}}" ></div>
                     <div flex="20" class="itemInfoRows"> {{item.name}} </div>
@@ -163,7 +168,7 @@
                         <div layout="row" class="extraProductsContainer" ng-repeat="product in extraProducts"> 
                             <div> <img class="alsoOnSaleImage" ng-src="{{product.image}}"></div>
                             <div layout='column'>
-                                <div> {{product.name}}</div>
+                                <div > {{product.name}}</div>
                                 
                                 <div layout="row"> 
                                     <div class="onsalePrice">${{product.price}} </div>
