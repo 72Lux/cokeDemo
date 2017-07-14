@@ -99,19 +99,6 @@ cokeController = ($scope, $http, $q) ->
                     }
                 ]
                 },{
-                name:'Diet Coke 12 oz Glass Bottle',
-                description:'Diet Coke 12 oz Glass Bottle. Over a million bottles, no two bottles are alike.'
-                image: 'https://i5.walmartimages.com/asr/131c8278-f011-43c7-a317-01fe5001fe29_1.b7b7e2061f52cc029127dd04a337712e.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff'
-                size:'12-pack'
-                price:20.00
-                upc:'00049000068160'
-                retailers:[
-                    {
-                        name:'walmart',
-                        image:'images/walmarticon.png'
-                    }
-                ]
-                },{
                 name:'Coca-Cola  Cherry Cola 2L Plastic Bottle',
                 description:'Coca-Cola Cherry combines the great taste of Coca-Cola with a sweet, smooth cherry flavor.'
                 image: 'https://i5.walmartimages.com/asr/58aae208-b0a3-4e53-82a7-e12824275dc8_1.7fa9c558b2820c934c8e07944b9afa73.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff'
@@ -131,7 +118,13 @@ cokeController = ($scope, $http, $q) ->
                 ]
                 }]
         ]
-        
+    $scope.shareACoke = 
+        name:'Personalized Coke Glass Bottle',
+        retailers:[]
+        size: ' 8 fl oz'
+        price: 5.00
+        image: 'images/shareACokeBottle.png'
+        sharing:true
     $scope.extraProducts = [
             {
                 name:'POWERADE ION4 Grape Sports Drink',

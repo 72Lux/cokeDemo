@@ -45,14 +45,28 @@
            
            </div>
        </div>
+        <div ng-show="productRow.length == 3" class="column" flex> 
+         <div> <img class="personalImage" src="images/shareACokeBottle.png"></div>
+            <div class="description"> Personalized Bottle</div>
+            <div> 
+                <md-button class="md-raised buybutton" md-colors="{background: 'red'}" ng-click="buy(shareACoke)">
+                    Share a Coke 
+                </md-button>
+           
+           </div>
+         
+         
+         </div>
        
     </div>
+        
        <div class="grayOverlay" ng-show="productsToBuy || cartShown || peapodLogin" > </div>
        <div ng-show="productsToBuy" flex-55 flex-offset-20 class="productsToBuy" layout="column">
         
             <div layout="row">
                 <div flex-30>
-                    <img class="buyImage" ng-src="{{currentProduct.image}}"> 
+                    <img class="buyImage sharring-{{currentProduct.sharing}}" ng-src="{{currentProduct.image}}"> 
+                    <span class="bottlename" ng-show="currentProduct.sharing">{{bottlename}}</span>
                 </div>
                 <div layout="column" flex>
                        <div layout="row" > 
@@ -62,13 +76,13 @@
             </div>
                     <div class="buyProductName">{{currentProduct.name}} </div>
                      <div layout="row">
-                        <div> 
+                        <div ng-hide="currentProduct.sharing "> 
                             <md-input-container>
                               <label>Zipcode:</label>
                              <input type="text" ng-model="cart.zip">
                             </md-input-container>
                        </div>
-                        <div> 
+                        <div ng-hide="currentProduct.sharing"> 
 
                             <md-input-container > 
                             <label>Retailer:</label>
@@ -79,6 +93,12 @@
                             </md-select>
                             </md-input-container>
                         </div>
+                         <div ng-show="currentProduct.sharing">  
+                          <md-input-container>
+                              <label>Name:</label>
+                             <input type="text" ng-model="bottlename">
+                            </md-input-container>
+                         </div>
                     </div>
                     <div layout="row">
                         <div class="sizeLabel"> 
@@ -108,7 +128,7 @@
                     </div>
                      <div layout="row">
                     <div flex> 
-                        <span class="unitPrice">UnitPrice : {{currentProduct.price * currentProduct.qty}} </span>
+                        <span class="unitPrice">UnitPrice : ${{currentProduct.price * currentProduct.qty}} </span>
                     </div>
                     <div flex flex-offset="40"> 
                         <md-button ng-click="addToBag()" md-colors="{background: 'red'}"> Add to bag </md-button>

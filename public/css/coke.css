@@ -29,7 +29,9 @@ md-toolbar{
     
         width: 200px;
 }
-
+.personalImage{
+    height:200px;
+}
 .productRows{
            padding-left: 100px;
     padding-right: 20px;
@@ -69,6 +71,7 @@ body{
    
     margin-left: 26%;
         padding-bottom: 20px;
+    min-width:800px;
 }
 .cartShown, .peapodLogin{
     position: fixed;
@@ -99,6 +102,10 @@ body{
     margin-top: 10%;
 }
 
+
+.sharring-true{
+    width:300px
+}
 .retailerSelect{
     width: 250px;
     
@@ -212,4 +219,14 @@ body{
     color: white !important;
     font-weight: 400;
     
+}
+.bottlename{
+    position: absolute;
+    top: 200px;
+    left: 120px;
+    color: white;
+    font-size: 1.3em;
+    font-family: Fresca;
+    font-weight: bold;
+    letter-spacing: -0.9px;
 }
