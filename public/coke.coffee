@@ -180,7 +180,7 @@ cokeController = ($scope, $http, $q) ->
             if @retailers.coke
                 for item in @retailers.coke.items
                     total += item.price*item.qty
-            return total
+            return total.toFixed(2)
     $scope.user ={}
     $scope.closeBuy =()->
         $scope.productsToBuy=false
@@ -215,7 +215,7 @@ cokeController = ($scope, $http, $q) ->
         data= 
             eGrocer:'peapod'
             zipCode: $scope.cart.zipCode
-            guid:$scope.cart.guid
+            cartId:$scope.cart.guid
             userName: $scope.user.name
             userPass: $scope.user.password
             products:upcs
