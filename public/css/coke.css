@@ -1,3 +1,24 @@
+body, a, div, h4{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body{
+  color: #898989;
+  font-size: 14px;
+  position: relative;
+}
+
+body .component {
+  background-clip: content-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.RichText p{
+    color:#5d5d5d;
+}
+
 md-toolbar,._md-toolbar-transitions{
     background-color: white !important;
     
@@ -19,39 +40,61 @@ md-toolbar{
     
 }
 .toolbar-text{
-        margin-top: 32px;
+    margin-top: 32px;
+    text-transform: uppercase;
 }
 .shopCoke{
     width: 100%;
     
 }
 .productImage{
-    
-        width: 200px;
+    width: 200px;
+    left: 5px;
+    position: relative;
 }
 .personalImage{
     height:200px;
+    position: relative;
+    left: 31px;
 }
 .productRows{
            padding-left: 100px;
     padding-right: 20px;
-    margin-top:10px;
+    margin-top:20px;
 }
 .description{
-     font-size: 20px;
+     font-size: 18px;
+        line-height: 1.42857143;    
     margin-left: 8px;
     width: 220px;
+    font-style: normal;
+    font-weight: 400;
+    color:#5d5d5d;
+    
+    text-align: center;
 }
+
 
 body{
     background-color: white;
-    font-family: "HelveticaNeueW01-75Bold",Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: "Gotham A", "Gotham B" !important;
 }
 
 .buybutton{
-    width:200px;
+   color: rgb(255,255,255);
+    background-color: rgb(244,0,0);
+    margin-top: 5.0px;
+    padding: 5.0px 70px;
+    border: none;
+    font-weight: 600;
 }
-
+.personal{
+     padding: 5.0px 50px;
+}
+.buybutton:hover{
+    background: #c10000 !important;
+    color: #FFFFFF !important !important;
+}
 
 .grayOverlay{ 
     position: fixed;
@@ -71,7 +114,7 @@ body{
    
     margin-left: 26%;
         padding-bottom: 20px;
-    min-width:800px;
+    min-width:700px;
 }
 .cartShown, .peapodLogin{
     position: fixed;
@@ -81,6 +124,7 @@ body{
     width:80%;
     border-color: black;
     border-style: solid;
+    color:black;
    
 }
 .peapodLogin{
@@ -99,7 +143,7 @@ body{
 
 .buyImage{
     width:230px;
-    margin-top: 10%;
+    margin-top: 20%;
 }
 
 
@@ -112,7 +156,7 @@ body{
 }
 
 .sizeqtyInputs{
-    width:200px;
+    width:190px;
 }
 .showCartButton{
     color:black;
@@ -131,15 +175,13 @@ body{
 .shippedFrom img{
         top: 6px;
     position: relative;
+
 }
-}
-.peapod{
-    background-color: rgba(244, 0, 0, 1);   
-    color:white;
-}
+
 .peapodButton{
-    
+   
     background-color:#5ea000;
+     color:white !important;
 }
 .itemRow{
     margin-top: 15px;
@@ -157,9 +199,9 @@ body{
  padding-left: 25px;
 }
 .closebutton{
-    padding-right: 20px;
-    position: relative;
+  position: relative;
     top: -25px;
+    left: 70px;
 }
 .smallImg{
     height:40px;
@@ -207,9 +249,10 @@ body{
 }
 .buyProductName{
     line-height: 1.5;
-    font-size: 20px;
-    color: #666 !important;
+    font-size: 28px;
+    color: black !important;
     font-weight: 400;
+    max-width: 90%;
 }
 .shippedFromSpan{
     position: relative;
@@ -225,11 +268,79 @@ body{
 }
 .bottlename{
     position: absolute;
-    top: 200px;
+    top: 228px;
     left: 120px;
     color: white;
     font-size: 1.3em;
     font-family: Fresca;
     font-weight: bold;
     letter-spacing: -0.9px;
+}
+
+.addToBagPDP    {
+    position: relative;
+    left:-10px;
+    color: rgb(255,255,255);
+    background-color: rgb(244,0,0);
+    margin-top: 15.0px;
+    padding: 3.0px 50.0px;
+    border: none;
+    font-weight: 600;
+}
+.addToBagPDP:hover{
+        background: #c10000 !important;
+    color: #FFFFFF !important;
+}
+label{
+    
+    font-size: 20px;
+}
+.longInput{
+    width: 100%!important;
+}
+.mediumInput{
+    width:100%!important;
+}
+.price, md-select-value{
+    color:black !important;
+    font-size: 17px;
+}
+.md-select-icon{
+     border-left-style: solid;
+    border-width: 2px;
+    border-color: #d4d4d4!important;
+    height: 23px;
+
+}
+.md-select-value{
+        border: solid;
+    border-radius: 5px;
+    border-color: #919191!important;
+    border-width: 2px;
+}
+.md-select-value span:first-child{
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.cartQty{
+    position: relative;
+    left: -28px;
+    top: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #666666;
+}
+.shoppingBagIcon{
+    position: relative;
+    height: 30px;
+    top: 9px;
+}
+.arrow{
+        top: 5px;
+    position: relative;
+}
+.peapod{
+    background-color: rgba(244, 0, 0, 1)!important ;
+    color:white;
 }

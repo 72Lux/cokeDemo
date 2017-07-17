@@ -1,3 +1,10 @@
+guid = ()->
+  s4= ()->
+    Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
+  s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+
 cokeController = ($scope, $http, $q) ->
     init = ()->
         $scope.products = [
@@ -124,7 +131,7 @@ cokeController = ($scope, $http, $q) ->
                         name:'coke'
                         image:'images/cokelogo.png'
                     }]
-        size: ' 8 fl oz'
+        size: '8 fl oz'
         price: 5.00
         image: 'images/shareACokeBottle.png'
         sharing:true
@@ -153,6 +160,7 @@ cokeController = ($scope, $http, $q) ->
         $scope.productsToBuy=true
         $scope.cartShown= false
     $scope.cart = 
+        guid: guid()
         zip:'08854'
         qty: ()->
             total =0
@@ -180,6 +188,8 @@ cokeController = ($scope, $http, $q) ->
     $scope.sendToPeapod= ()->
         $scope.peapodLogin =true;
         $scope.login=true;
+        $scope.peaPodLink=false
+        $scope.transmitting=false;
         $scope.cartShown= false;
    
     $scope.showCart =()->
@@ -196,7 +206,35 @@ cokeController = ($scope, $http, $q) ->
     $scope.transmitToPeapod =()->
         $scope.transmitting=true;
         $scope.login=false;
-        
+        upcs = []
+        for item in @retailers.peapod.items
+            upcs.push {
+                upc: items.upc
+                qty: item.qty
+            } 
+        data= 
+            eGrocer:'peapod'
+            zipCode: $scope.cart.zipCode
+            guid:$scope.cart.guid
+            userName: $scope.user.name
+            userPass: $scope.user.password
+            products:upcs
+        $http.post '/inject', data
+        .then (finished)->
+            setTimeout ()->
+                $scope.listenForOrderCompletion()
+            ,3000
+    $scope.listenForOrderCompletion = ()->
+        $http.get '/injectStatus'
+        .then (done)->
+            if done.link
+                $scope.transmitting=false;
+                $scope.peaPodLink =done.link;
+            else
+                setTimeout ()->
+                    $scope.listenForOrderCompletion()
+                2000
+                
     $scope.addToBag = ()->
         if typeof $scope.cart.retailers[$scope.currentProduct.retailer] == 'undefined'
             $scope.cart.retailers[$scope.currentProduct.retailer] = {name:$scope.currentProduct.retailer, items: []}

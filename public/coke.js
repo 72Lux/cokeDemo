@@ -1,5 +1,13 @@
 (function() {
-  var cokeController;
+  var cokeController, guid;
+
+  guid = function() {
+    var s4;
+    s4 = function() {
+      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    };
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  };
 
   cokeController = function($scope, $http, $q) {
     var init;
@@ -123,7 +131,7 @@
           image: 'images/cokelogo.png'
         }
       ],
-      size: ' 8 fl oz',
+      size: '8 fl oz',
       price: 5.00,
       image: 'images/shareACokeBottle.png',
       sharing: true
@@ -152,6 +160,7 @@
       return $scope.cartShown = false;
     };
     $scope.cart = {
+      guid: guid(),
       zip: '08854',
       qty: function() {
         var item, total, _i, _j, _len, _len1, _ref, _ref1;
@@ -200,6 +209,8 @@
     $scope.sendToPeapod = function() {
       $scope.peapodLogin = true;
       $scope.login = true;
+      $scope.peaPodLink = false;
+      $scope.transmitting = false;
       return $scope.cartShown = false;
     };
     $scope.showCart = function() {
@@ -220,8 +231,44 @@
       return this.retailers.peapod.items.splice;
     };
     $scope.transmitToPeapod = function() {
+      var data, item, upcs, _i, _len, _ref;
       $scope.transmitting = true;
-      return $scope.login = false;
+      $scope.login = false;
+      upcs = [];
+      _ref = this.retailers.peapod.items;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        item = _ref[_i];
+        upcs.push({
+          upc: items.upc,
+          qty: item.qty
+        });
+      }
+      data = {
+        eGrocer: 'peapod',
+        zipCode: $scope.cart.zipCode,
+        guid: $scope.cart.guid,
+        userName: $scope.user.name,
+        userPass: $scope.user.password,
+        products: upcs
+      };
+      return $http.post('/inject', data).then(function(finished) {
+        return setTimeout(function() {
+          return $scope.listenForOrderCompletion();
+        }, 3000);
+      });
+    };
+    $scope.listenForOrderCompletion = function() {
+      return $http.get('/injectStatus').then(function(done) {
+        if (done.link) {
+          $scope.transmitting = false;
+          return $scope.peaPodLink = done.link;
+        } else {
+          setTimeout(function() {
+            return $scope.listenForOrderCompletion();
+          });
+          return 2000;
+        }
+      });
     };
     $scope.addToBag = function() {
       if (typeof $scope.cart.retailers[$scope.currentProduct.retailer] === 'undefined') {
