@@ -258,10 +258,11 @@
       });
     };
     $scope.listenForOrderCompletion = function() {
-      return $http.get('http://40.121.144.101:3201/injectStatus').then(function(done) {
-        if (done.status) {
+      return $http.get('http://40.121.144.101:3201/injectStatus/cartId/' + $scope.cart.guid).then(function(done) {
+        data = JSON.parse(done.data)
+        if (data.status) {
           $scope.transmitting = false;
-          return $scope.peaPodLink = done.status;
+          return $scope.peaPodLink = data.status;
         } else {
           setTimeout(function() {
             return $scope.listenForOrderCompletion();

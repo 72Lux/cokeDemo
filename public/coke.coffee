@@ -225,7 +225,7 @@ cokeController = ($scope, $http, $q) ->
                 $scope.listenForOrderCompletion()
             ,3000
     $scope.listenForOrderCompletion = ()->
-        $http.get 'http://40.121.144.101:3201/injectStatus'
+        $http.get 'http://40.121.144.101:3201/injectStatus/cartId/'+$scope.cart.guid 
         .then (done)->
             if done.status
                 $scope.transmitting=false;
