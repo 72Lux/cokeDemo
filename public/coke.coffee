@@ -207,9 +207,9 @@ cokeController = ($scope, $http, $q) ->
         $scope.transmitting=true;
         $scope.login=false;
         upcs = []
-        for item in @retailers.peapod.items
+        for item in $scope.cart.retailers.peapod.items
             upcs.push {
-                upc: items.upc
+                upc: item.upc
                 qty: item.qty
             } 
         data= 
@@ -219,17 +219,17 @@ cokeController = ($scope, $http, $q) ->
             userName: $scope.user.name
             userPass: $scope.user.password
             products:upcs
-        $http.post '/inject', data
+        $http.post 'http://40.121.144.101:3201/inject', data
         .then (finished)->
             setTimeout ()->
                 $scope.listenForOrderCompletion()
             ,3000
     $scope.listenForOrderCompletion = ()->
-        $http.get '/injectStatus'
+        $http.get 'http://40.121.144.101:3201/injectStatus'
         .then (done)->
-            if done.link
+            if done.status
                 $scope.transmitting=false;
-                $scope.peaPodLink =done.link;
+                $scope.peaPodLink =done.status;
             else
                 setTimeout ()->
                     $scope.listenForOrderCompletion()

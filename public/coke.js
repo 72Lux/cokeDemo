@@ -235,11 +235,11 @@
       $scope.transmitting = true;
       $scope.login = false;
       upcs = [];
-      _ref = this.retailers.peapod.items;
+      _ref = $scope.cart.retailers.peapod.items;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         item = _ref[_i];
         upcs.push({
-          upc: items.upc,
+          upc: item.upc,
           qty: item.qty
         });
       }
@@ -251,17 +251,17 @@
         userPass: $scope.user.password,
         products: upcs
       };
-      return $http.post('/inject', data).then(function(finished) {
+      return $http.post('http://40.121.144.101:3201/inject', data).then(function(finished) {
         return setTimeout(function() {
           return $scope.listenForOrderCompletion();
         }, 3000);
       });
     };
     $scope.listenForOrderCompletion = function() {
-      return $http.get('/injectStatus').then(function(done) {
-        if (done.link) {
+      return $http.get('http://40.121.144.101:3201/injectStatus').then(function(done) {
+        if (done.status) {
           $scope.transmitting = false;
-          return $scope.peaPodLink = done.link;
+          return $scope.peaPodLink = done.status;
         } else {
           setTimeout(function() {
             return $scope.listenForOrderCompletion();
