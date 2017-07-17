@@ -227,9 +227,10 @@ cokeController = ($scope, $http, $q) ->
     $scope.listenForOrderCompletion = ()->
         $http.get 'http://40.121.144.101:3201/injectStatus/cartId/'+$scope.cart.guid 
         .then (done)->
-            if done.status
+            data = JSON.parse(done.data)
+            if data.status
                 $scope.transmitting=false;
-                $scope.peaPodLink =done.status;
+                $scope.peaPodLink =data.status;
             else
                 setTimeout ()->
                     $scope.listenForOrderCompletion()
