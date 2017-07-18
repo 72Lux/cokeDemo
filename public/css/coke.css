@@ -270,6 +270,7 @@ body{
 }
 .transmitting{
         padding: 30 150px;
+    text-transform: uppercase;
 }
 .buyProductName{
     line-height: 1.5;
@@ -387,4 +388,25 @@ label{
 }
 .extraSpacer{
     height:100px;
+}
+
+.md-bar2{
+    background-color:#5ea000 !important;
+}
+.md-bar1{
+    background-color:#51c277 !important;
+}
+.addedImages{
+    transition: all linear 0.5s;
+}
+
+.addedImages.ng-show{
+    opacity: 1;
+}
+md-progress-linear{
+    margin-top:14px;
+    margin-bottom:5px
+}
+.sentToPeapod{
+    margin-top: 16px;
 }

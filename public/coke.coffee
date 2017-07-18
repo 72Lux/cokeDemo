@@ -206,14 +206,15 @@ cokeController = ($scope, $http, $q) ->
                 itemIndex = curIndex
             curIndex++
         @retailers.peapod.items.splice
-    $scope.transmitToPeapod =()->
+    $scope. transmitToPeapod =()->
         $scope.transmitting=true;
         $scope.login=false;
-        upcs = []
+        $scope.addedupcs = []
         for item in $scope.cart.retailers.peapod.items
-            upcs.push {
+            $scope.addedupcs.push {
                 upc: item.upc
                 qty: item.qty
+                image: item.image
             } 
         data= 
             eGrocer:'peapod'
@@ -221,23 +222,37 @@ cokeController = ($scope, $http, $q) ->
             cartId:$scope.cart.guid
             userName: $scope.user.name
             userPass: $scope.user.password
-            products:upcs
+            products:$scope.addedupcs
+        $scope.determinateValue=0   
         $http.post 'http://40.121.144.101:3201/inject', data
         .then (finished)->
             setTimeout ()->
                 $scope.listenForOrderCompletion()
+                $scope.determinateValue=10
             ,3000
+    $scope.updateTransmitted = (data)->
+        $scope.currentUpcsAdded=[]
+        for upc in $scope.addedupcs
+            for newupc in data.addedUpcs
+                if newupc.upc is upc.upc
+                    $scope.currentUpcsAdded.push upc
+        $scope.determinateValue = (data.addedUpcs.length/$scope.cart.qty())*100
     $scope.listenForOrderCompletion = ()->
         $http.get 'http://40.121.144.101:3201/injectStatus/cartId/'+$scope.cart.guid 
         .then (done)->
             data = JSON.parse(done.data)
+            
             if data.status
+                $scope.determinateValue =100
                 $scope.transmitting=false;
-                $scope.peaPodLink =data.status;
+                $scope.peaPodLink =data.status; 
+            else if  data.addedUpcs
+                $scope.updateTransmitted data
+                $scope.listenForOrderCompletion()
             else
                 setTimeout ()->
                     $scope.listenForOrderCompletion()
-                2000
+                1000
                 
     $scope.addToBag = ()->
         if typeof $scope.cart.retailers[$scope.currentProduct.retailer] == 'undefined'

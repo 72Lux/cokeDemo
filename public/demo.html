@@ -255,14 +255,28 @@
             </div>
            
             <div ng-show="transmitting" class="transmitting">
-                 <md-progress-circular class="md-hue-2" md-diameter="20px" flex-offset="50"></md-progress-circular> 
+                 Transmitting your Cart 
                 <br/>
-                Transmitting your Cart to Peapod.
+                 <md-progress-linear md-mode="determinate" value="{{determinateValue}}"></md-progress-linear>
+                
+                <br/>
+                <div layout="row" ng-show="currentUpcsAdded.length > 0"> 
+                    
+                     <div>Sent: </div>
+                     <div ng-repeat="added in currentUpcsAdded"><img ng-src="{{added.image}}" width="25px"> </div>
+                     
+                </div>
+                
            
            </div>
            <div ng-show="peaPodLink" class="transmitting">
-                Transmitting your Order has been submitted
-                <br/>
+               <div layout="row" ng-show="currentUpcsAdded.length > 0"> 
+                    
+                     <div>Sent: </div>
+                     <div ng-repeat="added in currentUpcsAdded"><img class="addedImages" ng-src="{{added.image}}" width="40px"> </div>
+                     
+                </div>
+               <br/>
                <a href="{{peaPodLink}}" ><md-button  class='peapodButton sendCart'>  Open You cart At Peapod </md-button></a>
            
            </div>

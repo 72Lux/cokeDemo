@@ -235,16 +235,17 @@
       return this.retailers.peapod.items.splice;
     };
     $scope.transmitToPeapod = function() {
-      var data, item, upcs, _i, _len, _ref;
+      var data, item, _i, _len, _ref;
       $scope.transmitting = true;
       $scope.login = false;
-      upcs = [];
+      $scope.addedupcs = [];
       _ref = $scope.cart.retailers.peapod.items;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         item = _ref[_i];
-        upcs.push({
+        $scope.addedupcs.push({
           upc: item.upc,
-          qty: item.qty
+          qty: item.qty,
+          image: item.image
         });
       }
       data = {
@@ -253,26 +254,48 @@
         cartId: $scope.cart.guid,
         userName: $scope.user.name,
         userPass: $scope.user.password,
-        products: upcs
+        products: $scope.addedupcs
       };
+      $scope.determinateValue = 0;
       return $http.post('http://40.121.144.101:3201/inject', data).then(function(finished) {
         return setTimeout(function() {
-          return $scope.listenForOrderCompletion();
+          $scope.listenForOrderCompletion();
+          return $scope.determinateValue = 10;
         }, 3000);
       });
+    };
+    $scope.updateTransmitted = function(data) {
+      var newupc, upc, _i, _j, _len, _len1, _ref, _ref1;
+      $scope.currentUpcsAdded = [];
+      _ref = $scope.addedupcs;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        upc = _ref[_i];
+        _ref1 = data.addedUpcs;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          newupc = _ref1[_j];
+          if (newupc.upc === upc.upc) {
+            $scope.currentUpcsAdded.push(upc);
+          }
+        }
+      }
+      return $scope.determinateValue = (data.addedUpcs.length / $scope.cart.qty()) * 100;
     };
     $scope.listenForOrderCompletion = function() {
       return $http.get('http://40.121.144.101:3201/injectStatus/cartId/' + $scope.cart.guid).then(function(done) {
         var data;
         data = JSON.parse(done.data);
         if (data.status) {
+          $scope.determinateValue = 100;
           $scope.transmitting = false;
           return $scope.peaPodLink = data.status;
+        } else if (data.addedUpcs) {
+          $scope.updateTransmitted(data);
+          return $scope.listenForOrderCompletion();
         } else {
           setTimeout(function() {
             return $scope.listenForOrderCompletion();
           });
-          return 2000;
+          return 1000;
         }
       });
     };
