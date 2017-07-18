@@ -190,8 +190,8 @@
                     <div flex="10" flex-offset="10" class=""> <md-button ng-click="removeItem(item)"> remove </md-button> </div>
                 </div>
                   <div class="divider" flex="100"></div>
-                <div class="shippedFrom" flex-offset="80">
-                    <span class="estimatedTotal">Esitmated Total</span>  : <span class="price"> ${{cart.subtotal()}} </span> 
+                <div class="shippedFrom" flex-offset="70">
+                    <span class="estimatedTotal">Estimated Total</span>  : <span class="price"> ${{cart.subtotal()}} </span> 
                 </div>
            
                 <div class="shippedFrom" layout="row">
@@ -205,7 +205,7 @@
                                 <div layout="row"> 
                                     <div class="onsalePrice">${{product.price}} </div>
                                     
-                                   <div flex-offset="10"><md-button class="buybutton" ng-click="buy(product); saleViewed=true"> Buy now </md-button>
+                                   <div flex-offset="10"><md-button class="buybutton shorter" ng-click="buySale(product);"> Buy now </md-button>
                                     </div>
                                 </div>
                                 </div>

@@ -159,6 +159,10 @@
       $scope.productsToBuy = true;
       return $scope.cartShown = false;
     };
+    $scope.buySale = function(product) {
+      $scope.saleViewed = true;
+      return $scope.buy(product);
+    };
     $scope.cart = {
       guid: guid(),
       zip: '08854',

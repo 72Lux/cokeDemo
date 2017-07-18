@@ -190,7 +190,7 @@ body{
 
 }
 .estimatedTotal{
-    letter-spacing: .5em;
+    letter-spacing: .1em;
     text-transform: uppercase;
 }
 .peapodButton{
@@ -380,4 +380,7 @@ label{
      border-bottom: solid;
     border-color: #d5d5d5;
     border-width: 2px;
+}
+.shorter{
+    padding:5.0px 50px;
 }

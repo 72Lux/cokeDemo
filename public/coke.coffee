@@ -159,6 +159,9 @@ cokeController = ($scope, $http, $q) ->
         $scope.currentProduct.qty=1
         $scope.productsToBuy=true
         $scope.cartShown= false
+    $scope.buySale= (product)->
+        $scope.saleViewed=true
+        $scope.buy(product);
     $scope.cart = 
         guid: guid()
         zip:'08854'
