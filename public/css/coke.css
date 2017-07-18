@@ -74,8 +74,8 @@ md-toolbar{
     margin-top:20px;
 }
 .description{
-     font-size: 1px;
-        line-height: 1.42857143;    
+     font-size: 14px;
+    line-height: 1.42857143;    
     margin-left: 8px;
     width: 220px;
     font-style: normal;
@@ -88,7 +88,7 @@ md-toolbar{
 
 body{
     background-color: white;
-    font-family: "Gotham A", "Gotham B" !important;
+    font-family: font-family: 'Montserrat', sans-serif !important;
 }
 
 .buybutton{
