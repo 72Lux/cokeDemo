@@ -29,12 +29,12 @@ cokeController = ($scope, $http, $q) ->
                 ]
                 
                 },{
-                name:'Coca-Cola Zero Cherry',
+                name:'Coca-Cola Cherry - 12 pk',
                 description:'Cola0 calories per 12 fl oz serving. Low sodium'
-                image: 'https://i5.walmartimages.com/asr/fbb8bd57-66ed-4949-913f-27641bb8c7ba_1.b894209f1aa6625b931a0e54f025c040.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff'
-                size:'2L'
+                image: 'https://i5.walmartimages.com/asr/58aae208-b0a3-4e53-82a7-e12824275dc8_1.7fa9c558b2820c934c8e07944b9afa73.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff'
+                size:'12 pack'
                 price:1.89
-                upc:'00049000057959'
+                upc:'00049000050165'
                 retailers:[
                   
                     {
@@ -199,13 +199,13 @@ cokeController = ($scope, $http, $q) ->
         $scope.cartShown= true
         
     $scope.removeItem= (product)->
-        itemIndex = -1
+        itemIndex = -1 
         curIndex= 0
-        for item in @retailers.peapod.items
+        for item in $scope.cart.retailers.peapod.items
             if item.name is product 
                 itemIndex = curIndex
             curIndex++
-        @retailers.peapod.items.splice
+        $scope.cart.retailers   .peapod.items.splice(itemIndex,1)
     $scope. transmitToPeapod =()->
         $scope.transmitting=true;
         $scope.login=false;

@@ -31,12 +31,12 @@
               }
             ]
           }, {
-            name: 'Coca-Cola Zero Cherry',
+            name: 'Coca-Cola Cherry - 12 pk',
             description: 'Cola0 calories per 12 fl oz serving. Low sodium',
-            image: 'https://i5.walmartimages.com/asr/fbb8bd57-66ed-4949-913f-27641bb8c7ba_1.b894209f1aa6625b931a0e54f025c040.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
-            size: '2L',
+            image: 'https://i5.walmartimages.com/asr/58aae208-b0a3-4e53-82a7-e12824275dc8_1.7fa9c558b2820c934c8e07944b9afa73.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
+            size: '12 pack',
             price: 1.89,
-            upc: '00049000057959',
+            upc: '00049000050165',
             retailers: [
               {
                 name: 'peapod',
@@ -224,7 +224,7 @@
       var curIndex, item, itemIndex, _i, _len, _ref;
       itemIndex = -1;
       curIndex = 0;
-      _ref = this.retailers.peapod.items;
+      _ref = $scope.cart.retailers.peapod.items;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         item = _ref[_i];
         if (item.name === product) {
@@ -232,7 +232,7 @@
         }
         curIndex++;
       }
-      return this.retailers.peapod.items.splice;
+      return $scope.cart.retailers.peapod.items.splice(itemIndex, 1);
     };
     $scope.transmitToPeapod = function() {
       var data, item, _i, _len, _ref;
