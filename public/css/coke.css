@@ -28,7 +28,7 @@ md-toolbar,._md-toolbar-transitions{
 md-toolbar{
     position: fixed;
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 16px !important;
     color: #666 !important;
     font-weight: 400;
     font-style: normal;
@@ -43,10 +43,21 @@ md-toolbar{
     margin-top: 32px;
     text-transform: uppercase;
 }
+.toolbar{
+    margin:5px;
+}
 .shopCoke{
     width: 100%;
     
 }
+.withIMage{
+    position: relative;
+    top: -7px;
+}
+
+
+
+
 .productImage{
     width: 200px;
     left: 5px;
@@ -63,14 +74,14 @@ md-toolbar{
     margin-top:20px;
 }
 .description{
-     font-size: 18px;
+     font-size: 1px;
         line-height: 1.42857143;    
     margin-left: 8px;
     width: 220px;
     font-style: normal;
     font-weight: 400;
     color:#5d5d5d;
-    
+    text-transform: uppercase;
     text-align: center;
 }
 
@@ -81,11 +92,12 @@ body{
 }
 
 .buybutton{
-   color: rgb(255,255,255);
-    background-color: rgb(244,0,0);
+   color: rgb(255,255,255) !important;
+    background-color: rgb(244,0,0 )!important;
     margin-top: 5.0px;
     padding: 5.0px 70px;
     border: none;
+    line-height: 20px;
     font-weight: 600;
 }
 .personal{
@@ -121,8 +133,8 @@ body{
     top:20%;
     z-index:10;
     background-color: white;
-    width:80%;
-    border-color: black;
+    width:820px;
+    border-color: #d5d5d5;
     border-style: solid;
     color:black;
 }
@@ -177,7 +189,10 @@ body{
     position: relative;
 
 }
-
+.estimatedTotal{
+    letter-spacing: .5em;
+    text-transform: uppercase;
+}
 .peapodButton{
    
     background-color:#5ea000;
@@ -190,10 +205,16 @@ body{
     
         top: 25px;
     position: relative;
+    text-transform: uppercase;
 }
 
 .itemHeaders{
     margin-top: 20px;
+      border-bottom: solid;
+    border-color: #d5d5d5;
+    border-width: 2px;
+        padding-bottom: 10px;
+    text-transform: uppercase;
 }
 .headerItem{
  padding-left: 25px;
@@ -204,7 +225,7 @@ body{
     left: 70px;
 }
 .smallImg{
-    height:40px;
+    height:25px;
     
 }
 .alsoOnSaleImage{
@@ -235,11 +256,13 @@ body{
     
 }
 .divider{
-    background-color: black;
+    background-color: #d5d5d5;
     height:2px;
 }
 .sendCart{
     width:300px;
+    position: relative;
+    left: -10px;
 }
 .peapodButton.sendCart{
     color:white;
@@ -303,7 +326,11 @@ label{
 }
 .price, md-select-value{
     color:black !important;
+   
     font-size: 17px;
+}
+.price{
+     font-weight: 600;
 }
 .md-select-icon{
      border-left-style: solid;
@@ -343,4 +370,14 @@ label{
 .peapod{
     background-color: rgba(244, 0, 0, 1)!important ;
     color:white;
+}
+.shoppingBag{
+        text-align: center;
+    font-size: 30px;
+   
+    text-transform: uppercase;
+    padding: 15 0;
+     border-bottom: solid;
+    border-color: #d5d5d5;
+    border-width: 2px;
 }

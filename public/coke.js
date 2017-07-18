@@ -78,7 +78,7 @@
           }
         ], [
           {
-            name: 'Diet Coke With Splenda Soda, 12 Fl Oz, 12 Ct',
+            name: 'Diet Coke With Splenda Soda, 12 Fl Oz',
             description: 'Diet Coke is a delicious, crisp tasting,',
             image: 'https://i5.walmartimages.com/asr/23943747-22ef-4f6a-be5b-c005e9869cba_1.facaae4a0731db36184eeceb79adc62e.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
             size: '12 pack',
