@@ -200,6 +200,8 @@ body{
 }
 .itemRow{
     margin-top: 15px;
+    min-height: 100px !important;
+
 }
 .itemInfoRows{
     
@@ -409,4 +411,8 @@ md-progress-linear{
 }
 .sentToPeapod{
     margin-top: 16px;
+}
+.threeItems{
+    max-height:280px;
+    overflow-y: scroll;
 }

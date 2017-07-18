@@ -163,7 +163,7 @@
                 
             </div>
             <div layout="column" ng-repeat="retailer in cart.retailers"> 
-             
+                <div  layout="column" class="threeItems">
                 <div layout="row" class="itemRow" ng-repeat="item in retailer.items">
                     <div flex="15" class=""><img class="cartimage" ng-src="{{item.image}}" ></div>
                     <div flex="20" class="itemInfoRows">{{item.name}}</div>
@@ -189,6 +189,7 @@
                     </div>
                    
                     <div flex="10" flex-offset="10" class=""> <md-button ng-click="removeItem(item)"> remove </md-button> </div>
+                </div>
                 </div>
                   <div class="divider" flex="100"></div>
                 <div class="shippedFrom" flex-offset="70">
@@ -262,7 +263,7 @@
                 <br/>
                 <div layout="row" ng-show="currentUpcsAdded.length > 0"> 
                     
-                     <div>Sent: </div>
+                     <div class="sentToPeapod">Added: </div>
                      <div ng-repeat="added in currentUpcsAdded"><img ng-src="{{added.image}}" width="25px"> </div>
                      
                 </div>
@@ -272,7 +273,7 @@
            <div ng-show="peaPodLink" class="transmitting">
                <div layout="row" ng-show="currentUpcsAdded.length > 0"> 
                     
-                     <div>Sent: </div>
+                     <div class="sentToPeapod">Added: </div>
                      <div ng-repeat="added in currentUpcsAdded"><img class="addedImages" ng-src="{{added.image}}" width="40px"> </div>
                      
                 </div>

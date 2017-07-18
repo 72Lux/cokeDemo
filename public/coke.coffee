@@ -236,7 +236,7 @@ cokeController = ($scope, $http, $q) ->
             for newupc in data.addedUpcs
                 if newupc.upc is upc.upc
                     $scope.currentUpcsAdded.push upc
-        $scope.determinateValue = (data.addedUpcs.length/$scope.cart.qty())*100
+        $scope.determinateValue = (data.addedUpcs.length/$scope.addedupcs.length)*100
     $scope.listenForOrderCompletion = ()->
         $http.get 'http://40.121.144.101:3201/injectStatus/cartId/'+$scope.cart.guid 
         .then (done)->
@@ -248,7 +248,10 @@ cokeController = ($scope, $http, $q) ->
                 $scope.peaPodLink =data.status; 
             else if  data.addedUpcs
                 $scope.updateTransmitted data
-                $scope.listenForOrderCompletion()
+                
+                setTimeout ()->
+                    $scope.listenForOrderCompletion()
+                500
             else
                 setTimeout ()->
                     $scope.listenForOrderCompletion()

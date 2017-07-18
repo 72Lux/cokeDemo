@@ -278,7 +278,7 @@
           }
         }
       }
-      return $scope.determinateValue = (data.addedUpcs.length / $scope.cart.qty()) * 100;
+      return $scope.determinateValue = (data.addedUpcs.length / $scope.addedupcs.length) * 100;
     };
     $scope.listenForOrderCompletion = function() {
       return $http.get('http://40.121.144.101:3201/injectStatus/cartId/' + $scope.cart.guid).then(function(done) {
@@ -290,7 +290,10 @@
           return $scope.peaPodLink = data.status;
         } else if (data.addedUpcs) {
           $scope.updateTransmitted(data);
-          return $scope.listenForOrderCompletion();
+          setTimeout(function() {
+            return $scope.listenForOrderCompletion();
+          });
+          return 500;
         } else {
           setTimeout(function() {
             return $scope.listenForOrderCompletion();
