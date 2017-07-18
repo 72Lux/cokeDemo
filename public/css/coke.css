@@ -258,6 +258,7 @@ body{
 .divider{
     background-color: #d5d5d5;
     height:2px;
+        margin-top: 10px;
 }
 .sendCart{
     width:300px;
@@ -383,4 +384,7 @@ label{
 }
 .shorter{
     padding:5.0px 50px;
+}
+.extraSpacer{
+    height:100px;
 }
