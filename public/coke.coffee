@@ -224,6 +224,7 @@ cokeController = ($scope, $http, $q) ->
             userPass: $scope.user.password
             products:$scope.addedupcs
         $scope.determinateValue=0   
+        $scope.msg= 'Preparing your Cart'
         $http.post 'http://40.121.144.101:3201/inject', data
         .then (finished)->
             setTimeout ()->
@@ -241,7 +242,8 @@ cokeController = ($scope, $http, $q) ->
         $http.get 'http://40.121.144.101:3201/injectStatus/cartId/'+$scope.cart.guid 
         .then (done)->
             data = JSON.parse(done.data)
-            
+            if data.msg
+                $scope.msg=data.msg;
             if data.status
                 $scope.determinateValue =100
                 $scope.transmitting=false;

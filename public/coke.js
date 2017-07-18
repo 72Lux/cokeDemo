@@ -257,6 +257,7 @@
         products: $scope.addedupcs
       };
       $scope.determinateValue = 0;
+      $scope.msg = 'Preparing your Cart';
       return $http.post('http://40.121.144.101:3201/inject', data).then(function(finished) {
         return setTimeout(function() {
           $scope.listenForOrderCompletion();
@@ -284,6 +285,9 @@
       return $http.get('http://40.121.144.101:3201/injectStatus/cartId/' + $scope.cart.guid).then(function(done) {
         var data;
         data = JSON.parse(done.data);
+        if (data.msg) {
+          $scope.msg = data.msg;
+        }
         if (data.status) {
           $scope.determinateValue = 100;
           $scope.transmitting = false;
