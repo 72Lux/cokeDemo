@@ -187,6 +187,7 @@ cokeController = ($scope, $http, $q) ->
     $scope.user ={}
     $scope.closeBuy =()->
         $scope.productsToBuy=false
+        $scope.currentProduct={};
     
     $scope.sendToPeapod= ()->
         $scope.peapodLogin =true;

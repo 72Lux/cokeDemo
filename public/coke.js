@@ -208,7 +208,8 @@
     };
     $scope.user = {};
     $scope.closeBuy = function() {
-      return $scope.productsToBuy = false;
+      $scope.productsToBuy = false;
+      return $scope.currentProduct = {};
     };
     $scope.sendToPeapod = function() {
       $scope.peapodLogin = true;

@@ -151,7 +151,7 @@ body{
     
 }
 .retailerImages{ 
-        width: 150px;
+        width: 100px;
 }
 
 .buyImage{
@@ -416,4 +416,7 @@ md-progress-linear{
 .threeItems{
     max-height:280px;
     overflow-y: scroll;
+}
+.mediumDisplayIcon{
+    width:180px;
 }
