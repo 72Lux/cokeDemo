@@ -1,5 +1,5 @@
 (function() {
-  var cokeController, guid;
+  var cokeController, guid, transmitterController;
 
   guid = function() {
     var s4;
@@ -7,6 +7,41 @@
       return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     };
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  };
+
+  transmitterController = function($scope, $http, $q, $location) {
+    var init;
+    init = function() {
+      var absurl, data, firstLoop, item, items, parts, searchParts, tokenQuery, upcs, url, urlAdds, _i, _len;
+      absurl = $location.absUrl();
+      searchParts = absurl.split('=');
+      tokenQuery = searchParts[1].split('&')[0];
+      firstLoop = 0;
+      upcs = [];
+      items = searchParts[2].split('-');
+      for (_i = 0, _len = items.length; _i < _len; _i++) {
+        item = items[_i];
+        parts = item.split('|');
+        upcs.push({
+          upc: parts[0],
+          qty: parts[1],
+          zip: parts[2]
+        });
+      }
+      urlAdds = '';
+      data = {
+        token: tokenQuery,
+        upcs: upcs
+      };
+      url = 'http://shoppable.com:4441/cart';
+      return $http.post(url, data).then(function(done) {
+        setTimeout(function() {
+          return window.close();
+        }, 5000);
+        return console.log('done');
+      });
+    };
+    return init();
   };
 
   cokeController = function($scope, $http, $q) {
@@ -212,9 +247,33 @@
       return $scope.currentProduct = {};
     };
     $scope.sendToPeapod = function() {
+      var firstLoop, item, itemsForPeaPod, newwindow, urlAdds, _i, _len, _ref;
       $scope.peapodLogin = true;
+      urlAdds = "state=";
+      itemsForPeaPod = [];
+      firstLoop = true;
+      _ref = $scope.cart.retailers.peapod.items;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        item = _ref[_i];
+        if (!firstLoop) {
+          urlAdds += '-';
+        }
+        urlAdds += item.upc + '|' + item.qty + '|' + $scope.cart.zip;
+        firstLoop = false;
+      }
+      newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=2049&" + urlAdds + "&redirect_uri=http://shoppable.com:4444/add_item.html", "_shoppablePopup", "location=0,status=1,menubar=0,resizable=1,width=350,height=550");
+      newwindow.onhashchange = function() {
+        var token;
+        token = newwindow.hash;
+        return console.log(token);
+      };
       $scope.login = true;
-      $scope.peaPodLink = false;
+      $scope.peaPodLink = 'false';
+      setTimeout(function() {
+        $scope.cart.retailers.peapod = {};
+        $scope.productsToBuy = false;
+        return $scope.peaPodLink = 'https://www.peapod.com/home';
+      }, 15000);
       $scope.transmitting = false;
       return $scope.cartShown = false;
     };
@@ -251,7 +310,7 @@
       }
       data = {
         eGrocer: 'peapod',
-        zipCode: $scope.cart.zipCode,
+        zipCode: $scope.cart.zip,
         cartId: $scope.cart.guid,
         userName: $scope.user.name,
         userPass: $scope.user.password,
@@ -323,6 +382,14 @@
 
   cokeController.$inject = ['$scope', '$http', '$q'];
 
-  angular.module('cokeApp', ['ngAnimate', 'ngMaterial']).controller('cokeController', cokeController);
+  transmitterController.$inject = ['$scope', '$http', '$q', '$location'];
+
+  angular.module('cokeApp', ['ngAnimate', 'ngMaterial']).controller('cokeController', cokeController).controller('transmitterController', transmitterController).filter('trustAsResourceUrl', [
+    '$sce', function($sce) {
+      return function(val) {
+        return $sce.trustAsResourceUrl(val);
+      };
+    }
+  ]);
 
 }).call(this);

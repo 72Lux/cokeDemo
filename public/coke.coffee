@@ -4,7 +4,36 @@ guid = ()->
     .toString(16)
     .substring(1);
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-
+transmitterController  = ($scope, $http, $q, $location) ->
+    init = ()->
+        
+        absurl = $location.absUrl();     
+        searchParts = absurl.split('=')
+        tokenQuery =  searchParts[1].split('&')[0];
+        firstLoop=0
+        upcs = []
+        items =  searchParts[2].split '-'
+        for item in items 
+            parts = item.split '|'
+            upcs.push {
+                upc:parts[0]
+                qty:parts[1]
+                zip:parts[2]
+            }
+        urlAdds=''
+     
+        data = {
+            token:tokenQuery
+            upcs :  upcs
+        }
+        url = 'http://shoppable.com:4441/cart'
+        $http.post url,data
+        .then (done)->
+            setTimeout ()->
+                window.close()
+            ,5000
+            console.log 'done'
+    init()
 cokeController = ($scope, $http, $q) ->
     init = ()->
         $scope.products = [
@@ -191,8 +220,30 @@ cokeController = ($scope, $http, $q) ->
     
     $scope.sendToPeapod= ()->
         $scope.peapodLogin =true;
-        $scope.login=true;
-        $scope.peaPodLink=false
+        urlAdds="state="
+        itemsForPeaPod= []
+        firstLoop =true
+        for item in $scope.cart.retailers.peapod.items
+                if !firstLoop
+                    urlAdds+='-'
+                urlAdds+= item.upc+'|'+item.qty+'|'+$scope.cart.zip
+                firstLoop =false
+           
+        
+        
+        newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=2049&"+urlAdds+"&redirect_uri=http://egrocer.shoppable.co:4444/add_item.html","_shoppablePopup","location=0,status=1,menubar=0,resizable=1,width=350,height=550")
+        
+
+        newwindow.onhashchange = ()->
+            token = newwindow.hash
+            console.log token
+        $scope.login=true; 
+        $scope.peaPodLink='false'
+        setTimeout ()-> 
+            $scope.cart.retailers.peapod= {}
+            $scope.productsToBuy=false
+            $scope.peaPodLink='https://www.peapod.com/home'
+        ,15000
         $scope.transmitting=false;
         $scope.cartShown= false;
    
@@ -206,7 +257,7 @@ cokeController = ($scope, $http, $q) ->
             if item.name is product 
                 itemIndex = curIndex
             curIndex++
-        $scope.cart.retailers   .peapod.items.splice(itemIndex,1)
+        $scope.cart.retailers.peapod.items.splice(itemIndex,1)
     $scope. transmitToPeapod =()->
         $scope.transmitting=true;
         $scope.login=false;
@@ -219,7 +270,7 @@ cokeController = ($scope, $http, $q) ->
             } 
         data= 
             eGrocer:'peapod'
-            zipCode: $scope.cart.zipCode
+            zipCode: $scope.cart.zip
             cartId:$scope.cart.guid
             userName: $scope.user.name
             userPass: $scope.user.password
@@ -273,7 +324,16 @@ cokeController = ($scope, $http, $q) ->
 
 cokeController
     .$inject=  ['$scope', '$http','$q']
+transmitterController
+    .$inject=  ['$scope', '$http','$q','$location']
+
 
 angular
      .module 'cokeApp',['ngAnimate', 'ngMaterial']
      .controller 'cokeController', cokeController
+     .controller 'transmitterController', transmitterController
+     .filter 'trustAsResourceUrl', ['$sce', ($sce) ->
+         (val)->
+              $sce.trustAsResourceUrl(val);
+        ]
+    
