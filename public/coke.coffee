@@ -26,7 +26,7 @@ transmitterController  = ($scope, $http, $q, $location) ->
             token:tokenQuery
             upcs :  upcs
         }
-        url = 'http://shoppable.com:4441/cart'
+        url = 'http://egrocer.shoppable.co:4441/cart'
         $http.post url,data
         .then (done)->
             setTimeout ()->

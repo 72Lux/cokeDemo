@@ -33,7 +33,7 @@
         token: tokenQuery,
         upcs: upcs
       };
-      url = 'http://shoppable.com:4441/cart';
+      url = 'http://egrocer.shoppable.co:4441/cart';
       return $http.post(url, data).then(function(done) {
         setTimeout(function() {
           return window.close();
