@@ -44,6 +44,9 @@
       return $http.post(url, data).then(function(done) {
         return console.log('done');
       }, function(err) {
+        setTimeout(function() {
+          return $scope.transmitting = false;
+        }, 1000);
         return console.log(err);
       });
     };

@@ -35,6 +35,9 @@ transmitterController  = ($scope, $http, $q, $location) ->
         .then (done)->
             console.log 'done'
         , (err)->
+            setTimeout ()-> 
+                $scope.transmitting=false
+            ,1000
             console.log err
         
     init()
