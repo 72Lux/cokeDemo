@@ -38,7 +38,7 @@
         return console.log('done');
       });
       return setTimeout(function() {
-        return window.parent.location.href = 'https://www.peapod.com/shop/?999=ReviewOrder';
+        return window.opener.location.href = 'https://www.peapod.com/shop/?999=ReviewOrder';
       }, 8000);
     };
     return init();

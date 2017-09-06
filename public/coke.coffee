@@ -31,7 +31,7 @@ transmitterController  = ($scope, $http, $q, $location) ->
         .then (done)->
             console.log 'done'
         setTimeout ()-> 
-            window.parent.location.href='https://www.peapod.com/shop/?999=ReviewOrder'
+            window.opener.location.href='https://www.peapod.com/shop/?999=ReviewOrder'
         ,8000
     init()
 cokeController = ($scope, $http, $q) ->
