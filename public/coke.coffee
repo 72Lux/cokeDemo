@@ -6,6 +6,7 @@ guid = ()->
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 transmitterController  = ($scope, $http, $q, $location,$timeout) ->
     $scope.closeWindow= ()->
+        window.opener.open("https://www.peapod.com/shop/?999=ReviewOrder","_peapodTab" )
         window.close();
     init = ()->
         $scope.transmitting=true

@@ -12,6 +12,7 @@
   transmitterController = function($scope, $http, $q, $location, $timeout) {
     var init;
     $scope.closeWindow = function() {
+      window.opener.open("https://www.peapod.com/shop/?999=ReviewOrder", "_peapodTab");
       return window.close();
     };
     init = function() {
