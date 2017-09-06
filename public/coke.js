@@ -33,17 +33,17 @@
         });
       }
       urlAdds = '';
+      setTimeout(function() {
+        return $scope.transmitting = false;
+      }, 8000);
       data = {
         token: tokenQuery,
         upcs: upcs
       };
       url = 'http://egrocer.shoppable.co:4441/cart';
-      $http.post(url, data).then(function(done) {
+      return $http.post(url, data).then(function(done) {
         return console.log('done');
       });
-      return setTimeout(function() {
-        return $scope.transmitting = false;
-      }, 8000);
     };
     return init();
   };

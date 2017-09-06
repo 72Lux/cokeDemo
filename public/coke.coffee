@@ -23,7 +23,9 @@ transmitterController  = ($scope, $http, $q, $location) ->
                 zip:parts[2]
             }
         urlAdds=''
-     
+        setTimeout ()-> 
+            $scope.transmitting=false
+        ,8000
         data = {
             token:tokenQuery
             upcs :  upcs
@@ -32,9 +34,7 @@ transmitterController  = ($scope, $http, $q, $location) ->
         $http.post url,data
         .then (done)->
             console.log 'done'
-        setTimeout ()-> 
-            $scope.transmitting=false
-        ,8000
+        
         
     init()
 cokeController = ($scope, $http, $q) ->
