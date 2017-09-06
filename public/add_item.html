@@ -17,8 +17,8 @@
                         </div>
 
         <div class="sentToPeapod" ng-show="transmitting"></div>
-         <div  ng-show="transmitting" class="flex-offset-10"><md-button ng-disabled="true"  class='peapodButton sendCart md-raised'>  Transmitting To peapod <md-progress-circular md-mode="indeterminate"></md-progress-circular> </md-button></div>
-        <div  ng-hide="transmitting" ng-click="closeWindow()" class="flex-offset-10"><md-button  class='peapodButton sendCart md-raised'>  Open You cart At Peapod </md-button></div>
+         <div  ng-show="transmitting" class="flex-offset-10"><md-button ng-disabled="true"  class='peapodButton sendCart '> <div flex>Transmitting</div> <div flex> <md-progress-circular md-mode="indeterminate"></md-progress-circular></div>  </md-button></div>
+        <div  ng-hide="transmitting" ng-click="closeWindow()" class="flex-offset-10"><md-button  class='peapodButton sendCart '>  Open You cart At Peapod </md-button></div>
     </body>
       
   <!-- Angular Material requires Angular.js Libraries -->
