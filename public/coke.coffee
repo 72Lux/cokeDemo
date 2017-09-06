@@ -30,7 +30,9 @@ transmitterController  = ($scope, $http, $q, $location) ->
         $http.post url,data
         .then (done)->
             console.log 'done'
-        window.close()
+        setTimeout ()-> 
+            window.close()
+        ,5000
     init()
 cokeController = ($scope, $http, $q) ->
     init = ()->

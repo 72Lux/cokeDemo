@@ -37,7 +37,9 @@
       $http.post(url, data).then(function(done) {
         return console.log('done');
       });
-      return window.close();
+      return setTimeout(function() {
+        return window.close();
+      }, 5000);
     };
     return init();
   };
