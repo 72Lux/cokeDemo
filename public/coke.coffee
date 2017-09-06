@@ -31,8 +31,8 @@ transmitterController  = ($scope, $http, $q, $location) ->
         .then (done)->
             console.log 'done'
         setTimeout ()-> 
-            window.close()
-        ,5000
+            window.location.href='https://www.peapod.com/shop/?999=ReviewOrder'
+        ,8000
     init()
 cokeController = ($scope, $http, $q) ->
     init = ()->
@@ -220,6 +220,7 @@ cokeController = ($scope, $http, $q) ->
     
     $scope.sendToPeapod= ()->
         $scope.peapodLogin =true;
+        $scope.cartShown=false 
         urlAdds="state="
         itemsForPeaPod= []
         firstLoop =true
@@ -229,12 +230,7 @@ cokeController = ($scope, $http, $q) ->
                 urlAdds+= item.upc+'|'+item.qty+'|'+$scope.cart.zip
                 firstLoop =false
          
-        newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=1057&"+urlAdds+"&redirect_uri=http://egrocer.shoppable.co:4444/add_item.html","_shoppablePopup","location=0,status=1,menubar=0,resizable=1,width=350,height=550")
-        
-
-        newwindow.onhashchange = ()->
-            token = newwindow.hash
-            console.log token
+        newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=1057&"+urlAdds+"&redirect_uri=http://egrocer.shoppable.co:4444/add_item.html","_shoppablePopup")
         $scope.login=true; 
         $scope.peaPodLink='https://www.peapod.com/shop/?999=ReviewOrder'
         setTimeout ()-> 
