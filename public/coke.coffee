@@ -34,7 +34,8 @@ transmitterController  = ($scope, $http, $q, $location) ->
         $http.post url,data
         .then (done)->
             console.log 'done'
-        
+        , (err)->
+            console.log err
         
     init()
 cokeController = ($scope, $http, $q) ->

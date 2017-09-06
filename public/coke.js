@@ -43,6 +43,8 @@
       url = 'http://egrocer.shoppable.co:4441/cart';
       return $http.post(url, data).then(function(done) {
         return console.log('done');
+      }, function(err) {
+        return console.log(err);
       });
     };
     return init();
