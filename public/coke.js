@@ -9,7 +9,7 @@
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   };
 
-  transmitterController = function($scope, $http, $q, $location) {
+  transmitterController = function($scope, $http, $q, $location, $timeout) {
     var init;
     $scope.closeWindow = function() {
       return window.close();
@@ -33,7 +33,7 @@
         });
       }
       urlAdds = '';
-      setTimeout(function() {
+      $timeout(function() {
         return $scope.transmitting = false;
       }, 8000);
       data = {
@@ -379,7 +379,7 @@
 
   cokeController.$inject = ['$scope', '$http', '$q'];
 
-  transmitterController.$inject = ['$scope', '$http', '$q', '$location'];
+  transmitterController.$inject = ['$scope', '$http', '$q', '$location', '$timeout'];
 
   angular.module('cokeApp', ['ngAnimate', 'ngMaterial']).controller('cokeController', cokeController).controller('transmitterController', transmitterController).filter('trustAsResourceUrl', [
     '$sce', function($sce) {

@@ -4,7 +4,7 @@ guid = ()->
     .toString(16)
     .substring(1);
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-transmitterController  = ($scope, $http, $q, $location) ->
+transmitterController  = ($scope, $http, $q, $location,$timeout) ->
     $scope.closeWindow= ()->
         window.close();
     init = ()->
@@ -23,7 +23,7 @@ transmitterController  = ($scope, $http, $q, $location) ->
                 zip:parts[2]
             }
         urlAdds=''
-        setTimeout ()-> 
+        $timeout ()-> 
             $scope.transmitting=false
         ,8000
         data = {
@@ -319,7 +319,7 @@ cokeController = ($scope, $http, $q) ->
 cokeController
     .$inject=  ['$scope', '$http','$q']
 transmitterController
-    .$inject=  ['$scope', '$http','$q','$location']
+    .$inject=  ['$scope', '$http','$q','$location','$timeout']
 
 
 angular
