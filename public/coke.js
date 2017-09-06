@@ -266,7 +266,7 @@
         return console.log(token);
       };
       $scope.login = true;
-      $scope.peaPodLink = false;
+      $scope.peaPodLink = 'https://www.peapod.com/shop/?999=ReviewOrder';
       setTimeout(function() {
         $scope.cart.retailers.peapod = {};
         $scope.productsToBuy = false;
