@@ -5,8 +5,10 @@ guid = ()->
     .substring(1);
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 transmitterController  = ($scope, $http, $q, $location) ->
+    $scope.closeWindow= ()->
+        window.close();
     init = ()->
-        
+        $scope.transmitting=true
         absurl = $location.absUrl();     
         searchParts = absurl.split('=')
         tokenQuery =  searchParts[1].split('&')[0];
@@ -31,8 +33,9 @@ transmitterController  = ($scope, $http, $q, $location) ->
         .then (done)->
             console.log 'done'
         setTimeout ()-> 
-            window.opener.location.href='https://www.peapod.com/shop/?999=ReviewOrder'
+            $scope.transmitting=false
         ,8000
+        
     init()
 cokeController = ($scope, $http, $q) ->
     init = ()->

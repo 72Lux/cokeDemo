@@ -11,8 +11,12 @@
 
   transmitterController = function($scope, $http, $q, $location) {
     var init;
+    $scope.closeWindow = function() {
+      return window.close();
+    };
     init = function() {
       var absurl, data, firstLoop, item, items, parts, searchParts, tokenQuery, upcs, url, urlAdds, _i, _len;
+      $scope.transmitting = true;
       absurl = $location.absUrl();
       searchParts = absurl.split('=');
       tokenQuery = searchParts[1].split('&')[0];
@@ -38,7 +42,7 @@
         return console.log('done');
       });
       return setTimeout(function() {
-        return window.opener.location.href = 'https://www.peapod.com/shop/?999=ReviewOrder';
+        return $scope.transmitting = false;
       }, 8000);
     };
     return init();

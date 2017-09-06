@@ -16,8 +16,8 @@
 
                         </div>
 
-        <div class="sentToPeapod">Transmitting To peapod</div>
-
+        <div class="sentToPeapod" ng-show="transmitting">Transmitting To peapod</div>
+        <div  ng-hide="transmitting" ng-click="closeWindow()"><a href='https://www.peapod.com/shop/?999=ReviewOrder' target="_blank" ><md-button  class='peapodButton sendCart'>  Open You cart At Peapod </md-button></a></div>
     </body>
       
   <!-- Angular Material requires Angular.js Libraries -->
