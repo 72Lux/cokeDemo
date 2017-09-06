@@ -248,8 +248,9 @@
     };
     $scope.sendToPeapod = function() {
       var firstLoop, item, itemsForPeaPod, newwindow, urlAdds, _i, _len, _ref;
-      $scope.peapodLogin = true;
+      $scope.peapodLogin = false;
       $scope.cartShown = false;
+      $scope.productsToBuy = false;
       urlAdds = "state=";
       itemsForPeaPod = [];
       firstLoop = true;
@@ -262,16 +263,7 @@
         urlAdds += item.upc + '|' + item.qty + '|' + $scope.cart.zip;
         firstLoop = false;
       }
-      newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=1057&" + urlAdds + "&redirect_uri=http://egrocer.shoppable.co:4444/add_item.html", "_shoppablePopup");
-      $scope.login = true;
-      $scope.peaPodLink = 'https://www.peapod.com/shop/?999=ReviewOrder';
-      setTimeout(function() {
-        $scope.cart.retailers.peapod = {};
-        $scope.productsToBuy = false;
-        return $scope.peaPodLink = 'https://www.peapod.com/shop/?999=ReviewOrder';
-      }, 500);
-      $scope.transmitting = false;
-      return $scope.cartShown = false;
+      return newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=1057&" + urlAdds + "&redirect_uri=http://egrocer.shoppable.co:4444/add_item.html", "_shoppablePopup");
     };
     $scope.showCart = function() {
       return $scope.cartShown = true;

@@ -219,8 +219,9 @@ cokeController = ($scope, $http, $q) ->
         $scope.currentProduct={};
     
     $scope.sendToPeapod= ()->
-        $scope.peapodLogin =true;
+        $scope.peapodLogin =false;
         $scope.cartShown=false 
+        $scope.productsToBuy=false
         urlAdds="state="
         itemsForPeaPod= []
         firstLoop =true
@@ -231,15 +232,6 @@ cokeController = ($scope, $http, $q) ->
                 firstLoop =false
          
         newwindow = window.open("https://www.peapod.com/shop/oauth2/?response_type=code&client_id=1057&"+urlAdds+"&redirect_uri=http://egrocer.shoppable.co:4444/add_item.html","_shoppablePopup")
-        $scope.login=true; 
-        $scope.peaPodLink='https://www.peapod.com/shop/?999=ReviewOrder'
-        setTimeout ()-> 
-            $scope.cart.retailers.peapod= {}
-            $scope.productsToBuy=false
-            $scope.peaPodLink='https://www.peapod.com/shop/?999=ReviewOrder'
-        ,500
-        $scope.transmitting=false;
-        $scope.cartShown= false;
    
     $scope.showCart =()->
         $scope.cartShown= true
