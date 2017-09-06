@@ -271,6 +271,13 @@ body{
 .peapodButton.sendCart{
     color:white;
 }
+.peapodButton:hover{
+     background-color: #96ca4c;
+}
+.peapodButtonDisabled{
+    cursor: default;
+    background-color: #96ca4c;
+}
 .transmitting{
         padding: 30 150px;
     text-transform: uppercase;
