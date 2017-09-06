@@ -34,10 +34,10 @@
         upcs: upcs
       };
       url = 'http://egrocer.shoppable.co:4441/cart';
-      return $http.post(url, data).then(function(done) {
-        window.close();
+      $http.post(url, data).then(function(done) {
         return console.log('done');
       });
+      return window.close();
     };
     return init();
   };

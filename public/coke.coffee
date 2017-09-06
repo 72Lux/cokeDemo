@@ -29,9 +29,8 @@ transmitterController  = ($scope, $http, $q, $location) ->
         url = 'http://egrocer.shoppable.co:4441/cart'
         $http.post url,data
         .then (done)->
-            
-            window.close()
             console.log 'done'
+        window.close()
     init()
 cokeController = ($scope, $http, $q) ->
     init = ()->
