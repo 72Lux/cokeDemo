@@ -35,9 +35,7 @@
       };
       url = 'http://egrocer.shoppable.co:4441/cart';
       return $http.post(url, data).then(function(done) {
-        setTimeout(function() {
-          return window.close();
-        }, 5000);
+        window.close();
         return console.log('done');
       });
     };
@@ -268,12 +266,12 @@
         return console.log(token);
       };
       $scope.login = true;
-      $scope.peaPodLink = 'false';
+      $scope.peaPodLink = false;
       setTimeout(function() {
         $scope.cart.retailers.peapod = {};
         $scope.productsToBuy = false;
-        return $scope.peaPodLink = 'https://www.peapod.com/home';
-      }, 15000);
+        return $scope.peaPodLink = 'https://www.peapod.com/shop/?999=ReviewOrder';
+      }, 500);
       $scope.transmitting = false;
       return $scope.cartShown = false;
     };
